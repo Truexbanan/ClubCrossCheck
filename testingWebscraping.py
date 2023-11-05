@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+#rul is https://www.worldfootball.net/teams/liverpool-fc/10/ with liverppol-fc changing to anyother team
 def get_players(url):
     headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0'
