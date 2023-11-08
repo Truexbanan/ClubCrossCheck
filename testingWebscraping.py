@@ -8,6 +8,7 @@ def get_players(url):
     }
 
     response = requests.get(url, headers=headers)
+    # idk this what spenccer wrote print(response.content.decode())
 
     # Check if the request was successful
     if response.status_code == 200:
@@ -16,13 +17,13 @@ def get_players(url):
         
         # Use the correct CSS selector to find all player names
         # This selector targets "a" tags inside "td" tags with the class "hell" and "dunkel"
-        player_links = soup.select('td.hell a, td.dunkel a')
+        player_links = soup.select('a[href*="player_summary"]')
         print(f"Number of player links found: {len(player_links)}")
 
         # Extract and print the player names
         for link in player_links:
             print(link.get_text())
-        
+    
         # Check for a 'next' link and if found, call `get_players` recursively
         next_link = soup.find('a', string='Next »')
         if next_link and 'href' in next_link.attrs:
