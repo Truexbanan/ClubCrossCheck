@@ -7,14 +7,21 @@ const fs = require('fs'); // Import the File System module
     });
     const page = await browser.newPage();
     
-    const teams = ['arsenal-fc', 'chelsea-fc', 'manchester-united']; // Add more team names as needed
+    const teams = ['arsenal-fc', 'afc-bournemouth','aston-villa',
+                   'brentford-fc', 'brighton-hove-albion', 'burnley-fc',
+                   'chelsea-fc', 'crystal-palace' , 'everton-fc',
+                   'fulham-fc', 'liverpool-fc', 'luton-town',
+                   'manchester-city', 'newcastle-united', 'manchester-united',
+                   'nottingham-forest','sheffield-united','tottenham-hotspur',
+                   'west-ham-united', 'wolverhampton-wanderers'
+                ]; // Add more team names as needed
     const teamPlayers = {};
 
     for (const team of teams) {
         const url = `https://www.worldfootball.net/teams/${team}/10/`;
         await page.goto(url, {
             waitUntil: 'domcontentloaded',
-            timeout: 60000
+            timeout: 6000000
         });
 
         const players = await page.$$eval('a[href*="player_summary"]', elements => {
