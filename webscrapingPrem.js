@@ -14,6 +14,7 @@ const fs = require('fs'); // Import the File System module
                    'manchester-city', 'newcastle-united', 'manchester-united',
                    'nottingham-forest','sheffield-united','tottenham-hotspur',
                    'west-ham-united', 'wolverhampton-wanderers'
+                   
                 ]; // Add more team names as needed
     const teamPlayers = {};
 
@@ -34,6 +35,6 @@ const fs = require('fs'); // Import the File System module
     await browser.close();
 
     // Write the teamPlayers object to a JSON file
-    fs.writeFileSync('teamPlayers.json', JSON.stringify(teamPlayers, null, 2), 'utf-8');
-    console.log('The teamPlayers.json file has been saved!');
+    fs.writeFileSync('premierLeague.json', JSON.stringify(teamPlayers, null, 2), 'utf-8');
+    console.log('The premierLeague.json file has been saved!');
 })();
