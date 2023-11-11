@@ -28,3 +28,23 @@ SeriaA=
 'juventus', 'lazio-roma', 'sassuolo-calcio',
 'ssc-napoli','torino-fc','udinese-calcio',
 'us-lecce', 'us-salernitana-1919'
+
+Bundesliga = 
+'1-fc-heidenheim-1846', '1-fc-koeln','1-fc-union-berlin',
+'1-fsv-mainz-05', '1899-hoffenheim', 'bayer-leverkusen',
+'bayern-muenchen', 'bor-moenchengladbach' , 'borussia-dortmund',
+'eintracht-frankfurt', 'fc-augsburg', 'rb-leipzig',
+'sc-freiburg', 'sv-darmstadt-98', 'vfb-stuttgart',
+'vfl-bochum','vfl-wolfsburg','werder-bremen'
+
+Ligue1 = 
+
+'as-monaco', 'clermont-foot-63','fc-lorient',
+'fc-metz', 'fc-nantes', 'havre-ac',
+'lille-osc', 'montpellier-hsc' , 'ogc-nice',
+'olympique-lyon', 'olympique-marseille', 'paris-saint-germain',
+'rc-lens', 'rc-strasbourg', 'stade-brestois',
+'stade-reims','stade-rennais','toulouse-fc'
+
+
+

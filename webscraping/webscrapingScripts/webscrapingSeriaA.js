@@ -3,7 +3,7 @@ const fs = require('fs'); // Import the File System module
 
 (async () => {
     const browser = await puppeteer.launch({
-        headless: false, // Set to true if you don't need to see the browser GUI
+        headless: false, // Set to true for no browser GUI
     });
     const page = await browser.newPage();
     

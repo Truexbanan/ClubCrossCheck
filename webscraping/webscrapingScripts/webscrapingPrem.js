@@ -15,7 +15,7 @@ const fs = require('fs'); // Import the File System module
                    'nottingham-forest','sheffield-united','tottenham-hotspur',
                    'west-ham-united', 'wolverhampton-wanderers'
                    
-                ]; // Add more team names as needed
+                ]; 
     const teamPlayers = {};
 
     for (const team of teams) {
