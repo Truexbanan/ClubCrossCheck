@@ -23,4 +23,4 @@ all_teams.update(LaLiga_teams)
 arsenal_fc_data = all_teams.get('arsenal-fc', None)
 
 for item in arsenal_fc_data:
-            print(item)
+    print(item)
