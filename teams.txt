@@ -1,0 +1,30 @@
+Premier League = 
+
+'arsenal-fc', 'afc-bournemouth','aston-villa',
+'brentford-fc', 'brighton-hove-albion', 'burnley-fc',
+'chelsea-fc', 'crystal-palace' , 'everton-fc',
+'fulham-fc', 'liverpool-fc', 'luton-town',
+'manchester-city', 'newcastle-united', 'manchester-united',
+'nottingham-forest','sheffield-united','tottenham-hotspur',
+'west-ham-united', 'wolverhampton-wanderers'
+
+
+LaLiga = 
+
+'athletic-bilbao', 'atletico-madrid','ca-osasuna',
+'cadiz-cf', 'cd-alaves', 'celta-vigo',
+'fc-barcelona', 'getafe-cf' , 'girona-fc',
+'granada-cf', 'rayo-vallecano', 'rcd-mallorca',
+'real-betis', 'real-madrid', 'real-sociedad',
+'sevilla-fc','ud-almeria','ud-las-palmas',
+'valencia-cf', 'villarreal-cf'
+
+SeriaA= 
+
+'ac-milan', 'ac-monza','acf-fiorentina',
+'as-roma', 'atalanta', 'bologna-fc',
+'cagliari-calcio', 'empoli-fc' , 'frosinone-calcio',
+'genoa-cfc', 'hellas-verona', 'inter',
+'juventus', 'lazio-roma', 'sassuolo-calcio',
+'ssc-napoli','torino-fc','udinese-calcio',
+'us-lecce', 'us-salernitana-1919'
