@@ -35,15 +35,21 @@ def select_teams():
         <title>Soccer Data Project</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <style>
+            :root {
+                --primary-color: #8FA880; /* Sage green */
+                --secondary-color: #3D5A80; /* Deep blue */
+                --accent-color: #E09F3E; /* Muted orange */
+                --background-color: #F4F4F4; /* Off-white */
+            }
             body {
                 font-family: 'Roboto', sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: #e9ecef;
-                color: #495057;
+                background-color: var(--background-color);
+                color: var(--secondary-color);
             }
             header {
-                background: #007bff;
+                background: var(--primary-color);
                 color: white;
                 text-align: center;
                 padding: 1em 0;
@@ -84,21 +90,26 @@ def select_teams():
                 font-weight: bold;
                 margin-bottom: 1em;
             }
-            button:hover {
-                background: #0056b3;
+            button:hover, input[type="submit"]:hover {
+                background-color: #006644; /* Darkened primary color */
             }
-            input[type="submit"] {
-                padding: 10px 15px;
-                background: #28a745;
+           button, input[type="submit"] {
+                background: var(--primary-color);
                 color: white;
                 border: none;
                 border-radius: 4px;
                 cursor: pointer;
                 font-size: 16px;
                 font-weight: bold;
+                padding: 10px 15px;
+                margin-bottom: 1em;
             }
             input[type="submit"]:hover {
                 background: #218838;
+            }
+            h1, h2, h3, h4 {
+                font-family: 'Lato', sans-serif;
+                font-weight: 700;
             }
             .leagues-container {
                 display: flex;
@@ -270,7 +281,8 @@ def select_teams():
         <li>sv-darmstadt-98</li>
         <li>vfb-stuttgart</li>
         <li>vfl-bochum</li>
-        <li>vfl
+        <li>vfl-wolfsburg</li>
+        <li>werder-bremen</li>
             </div>
         </section>
     </body>
