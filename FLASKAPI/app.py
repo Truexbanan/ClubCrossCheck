@@ -21,6 +21,7 @@ def find_common_players(teams):
 
     return sorted(list(common_players))
 
+#does nothing might expand on it later
 @app.route('/')
 def home():
     return "Welcome to the Soccer Data Project!"
