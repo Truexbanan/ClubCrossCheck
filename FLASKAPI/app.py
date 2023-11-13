@@ -25,6 +25,7 @@ def find_common_players(teams):
 def home():
     return "Welcome to the Soccer Data Project!"
 
+#this html style shits fucking lame 
 
 @app.route('/select_teams')
 def select_teams():
@@ -58,17 +59,19 @@ def select_teams():
             section {
                 width: 80%;
                 margin: 0 auto;
-                padding: 2em;
+                padding: 2em; 
                 background: white;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 border-radius: 8px;
                 position: relative;
             }
+
             form {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 20px;
-            }
+                 display: flex;
+                 flex-direction: column;
+                 margin-bottom: 20px; /* You can increase this margin to add more space below the form */
+                }
+
             label {
                 margin-bottom: .5em;
                 font-weight: bold;
@@ -93,19 +96,20 @@ def select_teams():
             button:hover, input[type="submit"]:hover {
                 background-color: #006644; /* Darkened primary color */
             }
-           button, input[type="submit"] {
-                background: var(--primary-color);
-                color: white;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 16px;
-                font-weight: bold;
-                padding: 10px 15px;
-                margin-bottom: 1em;
-            }
+          button, input[type="submit"] {
+    padding: 12px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px; /* Rounded buttons */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+}
             input[type="submit"]:hover {
-                background: #218838;
+                background: #006644;
             }
             h1, h2, h3, h4 {
                 font-family: 'Lato', sans-serif;
@@ -119,28 +123,29 @@ def select_teams():
                 margin-top: 20px;
             }
             .league-box {
-                flex: 1 1 18%;
-                padding: 10px;
+                flex: 1 1 18%; /* Adjusted the flex-basis to ensure that the boxes have some space between them */
+                padding: 20px; /* Increased padding inside each box */
                 background-color: #f2f2f2;
                 border-radius: 8px;
-                margin-bottom: 10px;
+                margin-bottom: 20px; /* Increased margin for more space between boxes */
                 max-height: 400px;
                 overflow-y: auto;
             }
             .league-box h4 {
-                margin: 0 0 10px 0;
+             margin: 0 0 20px 0; /* Add more space below headings */
             }
             .league-box ul {
                 list-style-type: none;
-                padding: 0;
+                p adding: 0;
                 margin: 0;
                 font-size: 0.9em;
                 height: 340px;
                 overflow-y: auto;
             }
+
             .league-box ul li {
-                margin: 5px 0;
-                padding: 5px;
+                margin: 10px 0; 
+                padding: 10px; 
                 border-bottom: 1px solid #ddd;
             }
             @media (max-width: 768px) {
@@ -290,8 +295,8 @@ def select_teams():
     '''
     return render_template_string(html)
 
-
-
+ 
+ 
 @app.route('/show_common_players', methods=['POST'])
 def show_common_players():
     teams = request.form.getlist('team[]')
@@ -307,21 +312,27 @@ def show_common_players():
     <title>Common Players</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {{
+            --primary-color: #8FA880; /* Sage green */
+            --secondary-color: #3D5A80; /* Deep blue */
+            --accent-color: #E09F3E; /* Muted orange */
+            --background-color: #F4F4F4; /* Off-white */
+        }}
         body {{
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e9ecef;
-            color: #495057;
+            background-color: var(--background-color);
+            color: var(--secondary-color);
         }}
         header {{
-            background: #007bff;
+            background: var(--primary-color);
             color: white;
             text-align: center;
             padding: 1em 0;
         }}
         section {{
-            width: 50%;
+            width: 80%;
             margin: 20px auto;
             text-align: center;
             background: white;
@@ -342,7 +353,7 @@ def show_common_players():
             list-style-position: inside;
         }}
         p {{
-            color: #495057;
+            color: var(--secondary-color);
         }}
         .button {{
             display: block;
@@ -354,14 +365,20 @@ def show_common_players():
             text-decoration: none;
             outline: none;
             color: white;
-            background-color: #007bff;
+            background-color: var(--primary-color);
             border: none;
-            border-radius: 8px;
+            border-radius: 4px; /* Match border-radius with select_teams page */
             margin: 20px auto;
             font-weight: bold;
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
         }}
         .button:hover {{
-            background-color: #0056b3;
+            background-color: darken(var(--primary-color), 10%); /* Darken button color on hover */
+        }}
+        @media (max-width: 768px) {{
+            section {{
+                width: 90%;
+            }}
         }}
     </style>
 </head>
@@ -370,7 +387,7 @@ def show_common_players():
         <h1>Common Players</h1>
     </header>
     <section>
-        <h2>Players who have played for {team_names}</h2>  <!-- Update this line -->
+        <h2>Players who have played for {team_names}</h2>
         {player_list_html}
         <a href="/select_teams" class="button">Select New Teams</a>
     </section>
