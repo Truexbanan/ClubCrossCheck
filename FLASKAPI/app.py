@@ -374,7 +374,7 @@ def show_common_players():
             transition: background-color 0.3s; /* Smooth transition for hover effect */
         }}
         .button:hover {{
-            background-color: darken(var(--primary-color), 10%); /* Darken button color on hover */
+           background: #006644;
         }}
         @media (max-width: 768px) {{
             section {{
