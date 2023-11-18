@@ -3,12 +3,42 @@ import json
 
 app = Flask(__name__)
 
+#these are used for code in select_teams in regards to renaming them to more user friendly options ( not important for main code)
+premier_league_teams = [
+    'arsenal-fc', 'afc-bournemouth', 'aston-villa', 'brentford-fc', 'brighton-hove-albion', 'burnley-fc',
+    'chelsea-fc', 'crystal-palace', 'everton-fc', 'fulham-fc', 'liverpool-fc', 'luton-town',
+    'manchester-city', 'newcastle-united', 'manchester-united', 'nottingham-forest', 'sheffield-united',
+    'tottenham-hotspur', 'west-ham-united', 'wolverhampton-wanderers'
+]
+
+la_liga_teams = [
+    'athletic-bilbao', 'atletico-madrid', 'ca-osasuna', 'cadiz-cf', 'cd-alaves', 'celta-vigo', 
+    'fc-barcelona', 'getafe-cf', 'girona-fc', 'granada-cf', 'rayo-vallecano', 'rcd-mallorca', 
+    'real-betis', 'real-madrid', 'real-sociedad', 'sevilla-fc', 'ud-almeria', 'ud-las-palmas', 
+    'valencia-cf', 'villarreal-cf'
+]
+
+serie_a_teams = [
+    'ac-milan', 'ac-monza', 'acf-fiorentina', 'as-roma', 'atalanta', 'bologna-fc', 'cagliari-calcio', 
+    'empoli-fc', 'frosinone-calcio', 'genoa-cfc', 'hellas-verona', 'inter', 'juventus', 'lazio-roma', 
+    'sassuolo-calcio', 'ssc-napoli', 'torino-fc', 'udinese-calcio', 'us-lecce', 'us-salernitana-1919'
+]
+
+bundesliga_teams = [
+    '1-fc-heidenheim-1846', '1-fc-koeln', '1-fc-union-berlin', '1-fsv-mainz-05', '1899-hoffenheim', 
+    'bayer-leverkusen', 'bayern-muenchen', 'bor-moenchengladbach', 'borussia-dortmund', 'eintracht-frankfurt', 
+    'fc-augsburg', 'rb-leipzig', 'sc-freiburg', 'sv-darmstadt-98', 'vfb-stuttgart', 'vfl-bochum', 'vfl-wolfsburg', 
+    'werder-bremen'
+]
+
+
+
 #this is for trying to make application more user friendly so user can enter example "arsenal" instead of the exact "arsenal-fc"
 def format_team_name(team_identifier):
     words = team_identifier.replace('-', ' ').split()
     words = [word.capitalize() for word in words if word.lower() not in ['fc', 'cd', 'ac', 'sc', 'ssc', 'ud', 'us']]
     return ' '.join(words)
-
+#maps the teams to team_identifier
 def create_team_mapping():
     team_identifiers = [
     'arsenal-fc', 'afc-bournemouth', 'aston-villa', 'brentford-fc', 'brighton-hove-albion', 'burnley-fc',
@@ -64,6 +94,11 @@ def home():
 
 @app.route('/select_teams')
 def select_teams():
+
+    formatted_premier_league = [format_team_name(team) for team in premier_league_teams]
+    formatted_la_liga = [format_team_name(team) for team in la_liga_teams]
+    formatted_serie_a = [format_team_name(team) for team in serie_a_teams]
+    formatted_bundesliga = [format_team_name(team) for team in bundesliga_teams]
     formatted_teams = [format_team_name(team) for team in team_name_to_identifier.values()]
 
     html = '''
@@ -229,102 +264,29 @@ def select_teams():
                 <div class="league-box">
     <h4>Premier League</h4>
     <ul>
-        <li>arsenal-fc</li>
-        <li>afc-bournemouth</li>
-        <li>aston-villa</li>
-        <li>brentford-fc</li>
-        <li>brighton-hove-albion</li>
-        <li>burnley-fc</li>
-        <li>chelsea-fc</li>
-        <li>crystal-palace</li>
-        <li>everton-fc</li>
-        <li>fulham-fc</li>
-        <li>liverpool-fc</li>
-        <li>luton-town</li>
-        <li>manchester-city</li>
-        <li>newcastle-united</li>
-        <li>manchester-united</li>
-        <li>nottingham-forest</li>
-        <li>sheffield-united</li>
-        <li>tottenham-hotspur</li>
-        <li>west-ham-united</li>
-        <li>wolverhampton-wanderers</li>
+        ''' + '\n'.join(f'<li>{team}</li>' for team in formatted_premier_league) + '''
     </ul>
 </div>
 
 <div class="league-box">
     <h4>LaLiga</h4>
     <ul>
-        <li>athletic-bilbao</li>
-        <li>atletico-madrid</li>
-        <li>ca-osasuna</li>
-        <li>cadiz-cf</li>
-        <li>cd-alaves</li>
-        <li>celta-vigo</li>
-        <li>fc-barcelona</li>
-        <li>getafe-cf</li>
-        <li>girona-fc</li>
-        <li>granada-cf</li>
-        <li>rayo-vallecano</li>
-        <li>rcd-mallorca</li>
-        <li>real-betis</li>
-        <li>real-madrid</li>
-        <li>real-sociedad</li>
-        <li>sevilla-fc</li>
-        <li>ud-almeria</li>
-        <li>ud-las-palmas</li>
-        <li>valencia-cf</li>
-        <li>villarreal-cf</li>
+       ''' + '\n'.join(f'<li>{team}</li>' for team in formatted_la_liga) + '''
     </ul>
 </div>
 
 <div class="league-box">
     <h4>Serie A</h4>
     <ul>
-        <li>ac-milan</li>
-        <li>ac-monza</li>
-        <li>acf-fiorentina</li>
-        <li>as-roma</li>
-        <li>atalanta</li>
-        <li>bologna-fc</li>
-        <li>cagliari-calcio</li>
-        <li>empoli-fc</li>
-        <li>frosinone-calcio</li>
-        <li>genoa-cfc</li>
-        <li>hellas-verona</li>
-        <li>inter</li>
-        <li>juventus</li>
-        <li>lazio-roma</li>
-        <li>sassuolo-calcio</li>
-        <li>ssc-napoli</li>
-        <li>torino-fc</li>
-        <li>udinese-calcio</li>
-        <li>us-lecce</li>
-        <li>us-salernitana-1919</li>
+       ''' + '\n'.join(f'<li>{team}</li>' for team in formatted_serie_a) + '''
     </ul>
 </div>
 
 <div class="league-box">
     <h4>Bundesliga</h4>
     <ul>
-        <li>1-fc-heidenheim-1846</li>
-        <li>1-fc-koeln</li>
-        <li>1-fc-union-berlin</li>
-        <li>1-fsv-mainz-05</li>
-        <li>1899-hoffenheim</li>
-        <li>bayer-leverkusen</li>
-        <li>bayern-muenchen</li>
-        <li>bor-moenchengladbach</li>
-        <li>borussia-dortmund</li>
-        <li>eintracht-frankfurt</li>
-        <li>fc-augsburg</li>
-        <li>rb-leipzig</li>
-        <li>sc-freiburg</li>
-        <li>sv-darmstadt-98</li>
-        <li>vfb-stuttgart</li>
-        <li>vfl-bochum</li>
-        <li>vfl-wolfsburg</li>
-        <li>werder-bremen</li>
+       ''' + '\n'.join(f'<li>{team}</li>' for team in formatted_bundesliga) + '''
+    </ul>
             </div>
         </section>
     </body>
@@ -342,7 +304,8 @@ def show_common_players():
     # Convert user-friendly names to original identifiers
     team_identifiers = [team_name_to_identifier.get(team, team) for team in normalized_teams]
     common_players = find_common_players(team_identifiers)
-    team_names = ", ".join(team_identifiers)  # Use original identifiers for display
+    display_team_names = [format_team_name(team) for team in team_identifiers]
+    team_names = ", ".join(display_team_names)  # This uses user-friendly names
     player_list_html = "<ul>" + "".join([f"<li>{player}</li>" for player in common_players]) + "</ul>" if common_players else "<p>No common players found.</p>"
 
     html = f'''
