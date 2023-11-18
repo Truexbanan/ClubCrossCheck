@@ -3,6 +3,14 @@ import json
 
 app = Flask(__name__)
 
+
+def format_team_name(team_identifier):
+    """ Formats a team identifier into a more readable team name. """
+    words = team_identifier.replace('-', ' ').split()
+    # Filter out common football club abbreviations
+    words = [word.capitalize() for word in words if word.lower() not in ['fc', 'cd', 'ac', 'sc', 'ssc', 'ud', 'us']]
+    return ' '.join(words)
+
 def load_data():
     try:
         with open('combined_teams.json', 'r') as file:
