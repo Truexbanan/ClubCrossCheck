@@ -27,8 +27,7 @@ def create_team_mapping():
     'olympique-lyon', 'olympique-marseille', 'paris-saint-germain', 'rc-lens', 'rc-strasbourg', 'stade-brestois',
     'stade-reims', 'stade-rennais', 'toulouse-fc'
     ]
-    mapping = {format_team_name(team): team for team in team_identifiers}
-    print("Mapping:", mapping)  # Debugging line
+    
     return {format_team_name(team): team for team in team_identifiers}
 
 # Global variable for team name to identifier mapping
@@ -337,12 +336,12 @@ def select_teams():
  
 @app.route('/show_common_players', methods=['POST'])
 def show_common_players():
-   # Get user input from form
     teams = request.form.getlist('team[]')
+    # Normalize input: strip whitespace and convert to title case
+    normalized_teams = [team.strip().title() for team in teams]
     # Convert user-friendly names to original identifiers
-    team_identifiers = [team_name_to_identifier.get(team.strip(), team.strip()) for team in teams]
+    team_identifiers = [team_name_to_identifier.get(team, team) for team in normalized_teams]
     common_players = find_common_players(team_identifiers)
-
     team_names = ", ".join(team_identifiers)  # Use original identifiers for display
     player_list_html = "<ul>" + "".join([f"<li>{player}</li>" for player in common_players]) + "</ul>" if common_players else "<p>No common players found.</p>"
 
