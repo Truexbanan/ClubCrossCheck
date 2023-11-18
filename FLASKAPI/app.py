@@ -3,13 +3,37 @@ import json
 
 app = Flask(__name__)
 
-
+#this is for trying to make application more user friendly so user can enter example "arsenal" instead of the exact "arsenal-fc"
 def format_team_name(team_identifier):
-    """ Formats a team identifier into a more readable team name. """
     words = team_identifier.replace('-', ' ').split()
-    # Filter out common football club abbreviations
     words = [word.capitalize() for word in words if word.lower() not in ['fc', 'cd', 'ac', 'sc', 'ssc', 'ud', 'us']]
     return ' '.join(words)
+
+def create_team_mapping():
+    team_identifiers = [
+    'arsenal-fc', 'afc-bournemouth', 'aston-villa', 'brentford-fc', 'brighton-hove-albion', 'burnley-fc',
+    'chelsea-fc', 'crystal-palace', 'everton-fc', 'fulham-fc', 'liverpool-fc', 'luton-town',
+    'manchester-city', 'newcastle-united', 'manchester-united', 'nottingham-forest', 'sheffield-united',
+    'tottenham-hotspur', 'west-ham-united', 'wolverhampton-wanderers', 'athletic-bilbao', 'atletico-madrid',
+    'ca-osasuna', 'cadiz-cf', 'cd-alaves', 'celta-vigo', 'fc-barcelona', 'getafe-cf', 'girona-fc', 'granada-cf',
+    'rayo-vallecano', 'rcd-mallorca', 'real-betis', 'real-madrid', 'real-sociedad', 'sevilla-fc', 'ud-almeria',
+    'ud-las-palmas', 'valencia-cf', 'villarreal-cf', 'ac-milan', 'ac-monza', 'acf-fiorentina', 'as-roma', 'atalanta',
+    'bologna-fc', 'cagliari-calcio', 'empoli-fc', 'frosinone-calcio', 'genoa-cfc', 'hellas-verona', 'inter', 'juventus',
+    'lazio-roma', 'sassuolo-calcio', 'ssc-napoli', 'torino-fc', 'udinese-calcio', 'us-lecce', 'us-salernitana-1919',
+    '1-fc-heidenheim-1846', '1-fc-koeln', '1-fc-union-berlin', '1-fsv-mainz-05', '1899-hoffenheim', 'bayer-leverkusen',
+    'bayern-muenchen', 'bor-moenchengladbach', 'borussia-dortmund', 'eintracht-frankfurt', 'fc-augsburg', 'rb-leipzig',
+    'sc-freiburg', 'sv-darmstadt-98', 'vfb-stuttgart', 'vfl-bochum', 'vfl-wolfsburg', 'werder-bremen', 'as-monaco',
+    'clermont-foot-63', 'fc-lorient', 'fc-metz', 'fc-nantes', 'havre-ac', 'lille-osc', 'montpellier-hsc', 'ogc-nice',
+    'olympique-lyon', 'olympique-marseille', 'paris-saint-germain', 'rc-lens', 'rc-strasbourg', 'stade-brestois',
+    'stade-reims', 'stade-rennais', 'toulouse-fc'
+    ]
+    mapping = {format_team_name(team): team for team in team_identifiers}
+    print("Mapping:", mapping)  # Debugging line
+    return {format_team_name(team): team for team in team_identifiers}
+
+# Global variable for team name to identifier mapping
+team_name_to_identifier = create_team_mapping()
+
 
 def load_data():
     try:
@@ -21,9 +45,12 @@ def load_data():
 
 def find_common_players(teams):
     data = load_data()
-    common_players = set(data.get(teams[0], []))  # Initialize with the first team's players
+    # Map user-friendly team names back to identifiers
+    team_identifiers = [team_name_to_identifier.get(team, team) for team in teams]
 
-    for team in teams[1:]:
+    common_players = set(data.get(team_identifiers[0], []))
+
+    for team in team_identifiers[1:]:
         team_players = set(data.get(team, []))
         common_players.intersection_update(team_players)
 
@@ -38,6 +65,8 @@ def home():
 
 @app.route('/select_teams')
 def select_teams():
+    formatted_teams = [format_team_name(team) for team in team_name_to_identifier.values()]
+
     html = '''
     <!DOCTYPE html>
     <html>
@@ -302,16 +331,19 @@ def select_teams():
     </body>
     </html>
     '''
-    return render_template_string(html)
+    return render_template_string(html, teams=formatted_teams)
 
  
  
 @app.route('/show_common_players', methods=['POST'])
 def show_common_players():
+   # Get user input from form
     teams = request.form.getlist('team[]')
-    common_players = find_common_players(teams)
+    # Convert user-friendly names to original identifiers
+    team_identifiers = [team_name_to_identifier.get(team.strip(), team.strip()) for team in teams]
+    common_players = find_common_players(team_identifiers)
 
-    team_names = ", ".join(teams)  # Joining team names into a single string
+    team_names = ", ".join(team_identifiers)  # Use original identifiers for display
     player_list_html = "<ul>" + "".join([f"<li>{player}</li>" for player in common_players]) + "</ul>" if common_players else "<p>No common players found.</p>"
 
     html = f'''
