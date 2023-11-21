@@ -240,6 +240,23 @@ def select_teams():
                     margin-bottom: 20px;
                 }
             }
+            .github-link {
+                display: inline-block;
+                padding: 10px 15px;
+                font-size: 1rem;
+                font-weight: bold;
+                color: white;
+                background-color: #6E7F80; /* A grayish-green color for subtlety */
+                border-radius: 5px;
+                text-decoration: none;
+                transition: background-color 0.2s, transform 0.2s;
+                margin-top: 1rem; /* Adds a bit of space above the link */
+            }
+
+            .github-link:hover {
+                background-color: #536872;
+                transform: translateY(-2px);
+            }
         </style>
         <script>
             function addTeamInput() {
@@ -258,7 +275,7 @@ def select_teams():
     <body>
         <header>
             <h1>Soccer Data Project</h1>
-            <a href="https://github.com/Truexbanan/SoccerClubsProject" target="_blank" style="color: white; text-decoration: none; display: block; text-align: center;">Click to view on GitHub</a>
+            <a href="https://github.com/Truexbanan/SoccerClubsProject" target="_blank" class="github-link">Click to view on GitHub</a>
         </header>
         <section>
             {% if error %}
@@ -421,8 +438,8 @@ def show_common_players():
         <h1>Common Players</h1>
     </header>
     <section>
-        <h2>Players who have played for {team_names}</h2>
-        {player_list_html} /* for listing the more user friendly names at top of page */
+        <h2>Players who have played for {team_names}</h2> 
+        {player_list_html} 
         <a href="/select_teams" class="button">Select New Teams</a>
     </section>
 </body>
