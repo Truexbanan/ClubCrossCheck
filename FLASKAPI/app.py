@@ -178,18 +178,18 @@ def select_teams():
             button:hover, input[type="submit"]:hover {
                 background-color: #006644; /* Darkened primary color */
             }
-          button, input[type="submit"] {
-    padding: 12px 20px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 25px; /* Rounded buttons */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
-}
+            button, input[type="submit"] {
+                padding: 12px 20px;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 25px; /* Rounded buttons */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+                transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+            }
             input[type="submit"]:hover {
                 background: #006644;
             }
@@ -241,20 +241,21 @@ def select_teams():
                 }
             }
             .github-link {
-                display: inline-block;
+                position: absolute; /* Position the link absolutely relative to its parent */
+                top: 10px; 
+                right: 10px; 
                 padding: 10px 15px;
                 font-size: 1rem;
                 font-weight: bold;
                 color: white;
-                background-color: #6E7F80; /* A grayish-green color for subtlety */
+                background-color: #6E7F80; /* Subtle background color */
                 border-radius: 5px;
                 text-decoration: none;
                 transition: background-color 0.2s, transform 0.2s;
-                margin-top: 1rem; /* Adds a bit of space above the link */
             }
 
             .github-link:hover {
-                background-color: #536872;
+                background-color: #536872; /* Slightly darker shade on hover */
                 transform: translateY(-2px);
             }
         </style>
