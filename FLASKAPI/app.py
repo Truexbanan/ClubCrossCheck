@@ -1,9 +1,13 @@
-from flask import Flask, request, render_template_string
+import os
+from flask import Flask, get_flashed_messages, request, render_template_string, redirect, url_for, flash
 import json
 
-app = Flask(__name__)
 
-#these are used for code in select_teams in regards to renaming them to more user friendly options ( not important for main code)
+app = Flask(__name__)
+app.secret_key = os.urandom(24)
+
+
+#these arrays are used for code in select_teams in regards to renaming them to more user friendly options ( not important for main code)
 premier_league_teams = [
     'arsenal-fc', 'afc-bournemouth', 'aston-villa', 'brentford-fc', 'brighton-hove-albion', 'burnley-fc',
     'chelsea-fc', 'crystal-palace', 'everton-fc', 'fulham-fc', 'liverpool-fc', 'luton-town',
@@ -38,8 +42,11 @@ def format_team_name(team_identifier):
     words = team_identifier.replace('-', ' ').split()
     words = [word.capitalize() for word in words if word.lower() not in ['fc', 'cd', 'ac', 'sc', 'ssc', 'ud', 'us']]
     return ' '.join(words)
+
 #maps the teams to team_identifier
 def create_team_mapping():
+    # the french teams are in the json file but not included on website. However user can still enter the french teams.
+    # french teams not included due to style issues. 
     team_identifiers = [
     'arsenal-fc', 'afc-bournemouth', 'aston-villa', 'brentford-fc', 'brighton-hove-albion', 'burnley-fc',
     'chelsea-fc', 'crystal-palace', 'everton-fc', 'fulham-fc', 'liverpool-fc', 'luton-town',
@@ -90,17 +97,20 @@ def find_common_players(teams):
 def home():
     return "Welcome to the Soccer Data Project!"
 
-#this html style shits fucking lame 
 
+
+# main page - user selects teams
 @app.route('/select_teams')
 def select_teams():
 
+    # user friendly names
     formatted_premier_league = [format_team_name(team) for team in premier_league_teams]
     formatted_la_liga = [format_team_name(team) for team in la_liga_teams]
     formatted_serie_a = [format_team_name(team) for team in serie_a_teams]
     formatted_bundesliga = [format_team_name(team) for team in bundesliga_teams]
     formatted_teams = [format_team_name(team) for team in team_name_to_identifier.values()]
 
+    #HTML styling and basic front end html
     html = '''
     <!DOCTYPE html>
     <html>
@@ -250,6 +260,11 @@ def select_teams():
             <h1>Soccer Data Project</h1>
         </header>
         <section>
+            {% if error %}
+            <div style="color: red; text-align: center;">
+            {{ error }}
+            </div>
+            {% endif %}
             <form action="/show_common_players" method="post">
                 <div id="team-inputs">
                     <label for="team1">Team 1:</label>
@@ -292,7 +307,13 @@ def select_teams():
     </body>
     </html>
     '''
-    return render_template_string(html, teams=formatted_teams)
+
+    # if user enters invalid team name
+
+    messages = get_flashed_messages(category_filter=['error'])
+    error_message = messages[0] if messages else ""
+    
+    return render_template_string(html, teams=formatted_teams, error=error_message)
 
  
  
@@ -301,6 +322,15 @@ def show_common_players():
     teams = request.form.getlist('team[]')
     # Normalize input: strip whitespace and convert to title case
     normalized_teams = [team.strip().title() for team in teams]
+
+    # Validate team names
+    # if not valid go back to /select_teams and flash error message in HTML code
+    invalid_teams = [team for team in normalized_teams if team not in team_name_to_identifier]
+    if invalid_teams:
+        flash(f"Invalid team name(s): {', '.join(invalid_teams)}. Please check spelling and try again. (teams listed below)", 'error')
+        return redirect(url_for('select_teams'))
+
+
     # Convert user-friendly names to original identifiers
     team_identifiers = [team_name_to_identifier.get(team, team) for team in normalized_teams]
     common_players = find_common_players(team_identifiers)
@@ -391,13 +421,14 @@ def show_common_players():
     </header>
     <section>
         <h2>Players who have played for {team_names}</h2>
-        {player_list_html}
+        {player_list_html} /* for listing the more user friendly names at top of page */
         <a href="/select_teams" class="button">Select New Teams</a>
     </section>
 </body>
 </html>
 '''
     return render_template_string(html)
+
 
 
 if __name__ == '__main__':
