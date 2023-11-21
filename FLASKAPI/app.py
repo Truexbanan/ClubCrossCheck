@@ -258,6 +258,7 @@ def select_teams():
     <body>
         <header>
             <h1>Soccer Data Project</h1>
+            <a href="https://github.com/Truexbanan/SoccerClubsProject" target="_blank" style="color: white; text-decoration: none; display: block; text-align: center;">Click to view on GitHub</a>
         </header>
         <section>
             {% if error %}
