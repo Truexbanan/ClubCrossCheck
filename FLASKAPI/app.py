@@ -95,7 +95,8 @@ def find_common_players(teams):
 #does nothing might expand on it later
 @app.route('/')
 def home():
-    return "Welcome to the Soccer Data Project!"
+    #redirects to main page (/select_teams)
+    return redirect(url_for('select_teams'))
 
 
 
