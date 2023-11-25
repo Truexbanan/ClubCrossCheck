@@ -1,1 +1,7 @@
+
+new (redirects main page)
+New updated IP4 - 18.205.235.124
+
+old (still up just doesnt redirect main page)
 http://50.17.130.100/select_teams - url using AWS EC2 instances
+
