@@ -66,11 +66,11 @@ Club Cross-Check is an innovative full-stack web application designed to connect
 
 ## Accessing the Application
 
-Visit [Club Cross Check](http://clubcrosscheck.com/) to explore the application. Select teams from the provided lists and discover players who have shared their talents across these top European clubs.
+Visit [clubcrosscheck.com](http://clubcrosscheck.com/) to explore the application. Select teams from the provided lists and discover players who have shared their talents across these top European clubs.
 
 ## Feedback and Contributions
 
-We welcome your feedback and contributions. Please visit our [GitHub repository](https://github.com/Truexbanan/SoccerClubsProject) for more information on contributing to the project, reporting issues, or suggesting improvements.
+I welcome your feedback and contributions. Please visit my [GitHub repository](https://github.com/Truexbanan/ClubCrossCheck) for more information on contributing to the project, reporting issues, or suggesting improvements. Email : banan@bu.edu
 
 ## License
 
