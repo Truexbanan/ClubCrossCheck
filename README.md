@@ -72,6 +72,6 @@ Visit [clubcrosscheck.com](http://clubcrosscheck.com/) to explore the applicatio
 
 I welcome your feedback and contributions. Please visit my [GitHub repository](https://github.com/Truexbanan/ClubCrossCheck) for more information on contributing to the project, reporting issues, or suggesting improvements. Email : banan@bu.edu
 
-## License
 
-This project is licensed under the MIT License - see the LICENSE file in the GitHub repository for details.
+## License
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
