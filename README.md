@@ -1,4 +1,4 @@
-# ClubCrossCheck
+# Club Cross-Check
 
 ## Project Overview
 
