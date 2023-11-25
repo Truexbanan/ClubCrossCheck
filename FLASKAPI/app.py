@@ -136,7 +136,7 @@ def select_teams():
                 background: var(--primary-color);
                 color: white;
                 text-align: center;
-                padding: 1em 0;
+                padding: 0.5em 0;
                 margin-bottom: 2em;
             }
             section {
@@ -259,6 +259,12 @@ def select_teams():
                 background-color: #536872; /* Slightly darker shade on hover */
                 transform: translateY(-2px);
             }
+            .subtitle {
+            font-size: 0.6em; /* Adjust the size as needed */
+            color: white; /* Or any color you prefer */
+            display: block; /* Ensures it appears on a new line */
+            margin-top: 10px; /* Adds some space between the title and subtitle */
+        }
         </style>
         <script>
             function addTeamInput() {
@@ -276,7 +282,9 @@ def select_teams():
     </head>
     <body>
         <header>
-            <h1>Soccer Data Project</h1>
+            <h1>Club Cross-Check
+            <span class="subtitle">Find Common Players Between Teams</span>
+            </h1>
             <a href="https://github.com/Truexbanan/SoccerClubsProject" target="_blank" class="github-link">Click to view on GitHub</a>
         </header>
         <section>
