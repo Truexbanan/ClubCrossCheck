@@ -1,8 +1,8 @@
-# Soccer Clubs Project
+# ClubCrossCheck
 
 ## Project Overview
 
-Soccer Clubs Project is an innovative full-stack web application designed to connect soccer enthusiasts with detailed information about players who have played for multiple clubs in Europe's top four leagues: Bundesliga (Germany), Premier League (England), La Liga (Spain), and Serie A (Italy). This tool is invaluable for fans, researchers, and journalists alike, offering a unique perspective on player careers across these competitive leagues.
+ClubCrossCheck is an innovative full-stack web application designed to connect soccer enthusiasts with detailed information about players who have played for multiple clubs in Europe's top four leagues: Bundesliga (Germany), Premier League (England), La Liga (Spain), and Serie A (Italy). This tool is invaluable for fans, researchers, and journalists alike, offering a unique perspective on player careers across these competitive leagues.
 
 ## Key Features
 
